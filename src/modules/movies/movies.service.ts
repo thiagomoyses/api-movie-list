@@ -14,7 +14,7 @@ export class MoviesService {
                 }
             });
 
-            if(getMovie) return responses.sendResponse(false, "Movie Already saved");
+            if(getMovie) return responses.sendResponse(false, "Movie Already saved", null, 409);
 
             const newMovie = await prisma.movie.create({
                 data: {
@@ -25,10 +25,10 @@ export class MoviesService {
                 }
             });
 
-            return responses.sendResponse(true, "Movie Saved", newMovie);
+            return responses.sendResponse(true, "Movie Saved", newMovie, 201);
 
         } catch (error) {
-            throw error;
+            return responses.sendResponse(false, "Internal error!", null, 500);
         }
 
     }
