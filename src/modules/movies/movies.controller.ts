@@ -7,14 +7,27 @@ export class MoviesController {
 
         try {
             const payload: MoviesDto = req.body;
-            const saveNewUser = new MoviesService();
-            const result = await saveNewUser.saveNewMovie(payload);
+            const saveNewMovie = new MoviesService();
+            const result = await saveNewMovie.saveNewMovie(payload);
 
             const statusCode = result.status;
-            
+
             return res.status(statusCode).json(result);
         } catch (error) {
-            return res.status(500).json({success: false, message: "internal error!", data: null});
+            return res.status(500).json({ success: false, message: "internal error!", data: null });
+        }
+    }
+
+    async getMovieList(req: Request, res: Response) {
+        try {
+            const movieService = new MoviesService();
+            const getMovieList = await movieService.getMovieList();
+
+            const statusCode = getMovieList.status;
+
+            return res.status(statusCode).json(getMovieList);
+        } catch (error) {
+            return res.status(500).json({ success: false, message: "internal error!", data: null });
         }
     }
 }

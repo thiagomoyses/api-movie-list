@@ -6,8 +6,7 @@ const moviesController = new MoviesController()
 
 
 router.post('/movie', moviesController.saveNewMovie);
-
-// router.get('/all/:id', controllers.moviesControllers.getMovieById);
+router.get('/all', moviesController.getMovieList);
 
 // router.post('/movie', controllers.moviesControllers.saveMovie);
 
