@@ -1,10 +1,10 @@
 import { Router } from "express";
+import { AuthController } from "../modules";
 
 const router = Router();
+const authController = new AuthController();
 
-router.post('/login', (req, res) => {
-    return res.send("hello");
-});
+router.post('/login', authController.login);
 
 
 export { router }
