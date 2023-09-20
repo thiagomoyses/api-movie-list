@@ -11,9 +11,9 @@ export class UserController {
             const payload: UserDto = req.body;
             const saveUser = await userService.createNewUser(payload);
 
-            return saveUser;
+            return res.status(saveUser.status).json(saveUser);
         } catch (error) {
-            throw error;
+            return res.status(500).json({ success: false, message: "internal error!", data: null });
         }
 
     }
