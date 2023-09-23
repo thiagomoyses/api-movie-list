@@ -5,13 +5,14 @@ import { prisma } from "../../prisma/client";
 import { Responses } from "../../responses/responses";
 import { AuthDto } from "./dto";
 import Configs from "../../config/configs";
+import { ResponsesInterface } from "../../interfaces";
 
 
 export class AuthService {
     private responses = new Responses();
     private configs = new Configs(); 
 
-    async login({ email, password }: AuthDto): Promise<{ success: boolean, message: string, data: Record<string, any> | null, status: number }> {
+    async login({ email, password }: AuthDto): Promise<ResponsesInterface> {
 
         try {
             const findUser = await prisma.user.findUnique({

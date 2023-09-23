@@ -3,8 +3,8 @@ import { AuthService } from "./auth.service";
 import { AuthDto } from "./dto";
 
 export class AuthController {
-    async login(req: Request, res: Response){
-        
+    async login(req: Request, res: Response) {
+
         const authService = new AuthService();
         const payload: AuthDto = req.body
         const tryLogin = await authService.login(payload);
