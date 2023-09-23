@@ -1,3 +1,4 @@
 export const exceptionRoutes = {
-    bodyValidator: ['/movies/all']
+    bodyValidator: ['/movies/all'],
+    jwtValidator: ['/users/user', '/auth/login'],
 }
