@@ -20,10 +20,10 @@ export class AuthService {
                 }
             });
 
-            if (!findUser) return this.responses.sendResponse(false, "Wrong credentials!", null, 401);
+            if (!findUser) return this.responses.accessDenied("Wrong credentials!");
 
             const pwMatches = await argon.verify(findUser.hash, password);
-            if (!pwMatches) return this.responses.sendResponse(false, "Wrong credentials!", null, 401);
+            if (!pwMatches) return this.responses.accessDenied("Wrong credentials!");
 
 
             const { JWT_SECRET, JWT_EXPIRATION_TIME, REFRESH_TOKEN_SECRET, REFRESH_TOKEN_EXPIRATION_TIME } = this.configs.jwtParams();
@@ -39,10 +39,10 @@ export class AuthService {
                 refresh_token: refreshToken
             }
 
-            return this.responses.sendResponse(true, "Successfully logged!", data, 200);
+            return this.responses.accessGranted(undefined, data);
 
         } catch (error) {
-            return this.responses.sendResponse(false, "Internal error!", null, 500);
+            return this.responses.internalError();
         }
     }
 }
