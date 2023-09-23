@@ -16,8 +16,8 @@ export const jwtValidator = (req: Request, res: Response, next: NextFunction) =>
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
         if (!token) {
-            const resp = responses.sendResponse(false, "Access denied!", null, 401);
-            return res.status(resp.status).json(res);
+            const errorResponse = responses.sendResponse(false, "Access denied!", null, 401);
+            return res.status(errorResponse.status).json(errorResponse);
         }
 
         const { JWT_SECRET } = configs.jwtParams();
