@@ -24,6 +24,17 @@ export class Responses {
         return this.sendResponse(payload.success, payload.message, payload.data, payload.status);
     }
 
+    badRequest(message: string = "Bad request!"): ResponsesInterface{
+        const payload = {
+            success: false,
+            message: message,
+            data: null,
+            status: 400
+        }
+
+        return this.sendResponse(payload.success, payload.message, payload.data, payload.status);
+    }
+
     internalError(): ResponsesInterface {
         const payload = {
             success: false,
