@@ -1,4 +1,4 @@
-import { ResponsesInterface } from "./interface/responses.interface.";
+import { ResponsesInterface } from "../interfaces";
 
 export class Responses {
 
