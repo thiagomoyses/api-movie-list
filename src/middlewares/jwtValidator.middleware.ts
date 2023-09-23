@@ -20,7 +20,7 @@ export const jwtValidator = (req: Request, res: Response, next: NextFunction) =>
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
         if (!token) {
-            const errorResponse = responses.sendResponse(false, "Access denied!", null, 401);
+            const errorResponse = responses.accessDenied();
             return res.status(errorResponse.status).json(errorResponse);
         }
 
@@ -31,7 +31,7 @@ export const jwtValidator = (req: Request, res: Response, next: NextFunction) =>
         next();
 
     } catch (error) {
-        const resp = responses.sendResponse(false, "Access denied!", null, 401);
+        const resp = responses.accessDenied();
         return res.status(resp.status).json(res);
     }
 }
