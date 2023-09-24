@@ -25,8 +25,9 @@ export const jwtValidator = (req: Request, res: Response, next: NextFunction) =>
         }
 
         const { JWT_SECRET } = configs.jwtParams();
-        const decodedInfo = jwt.verify(token, JWT_SECRET);
-        (req as CustomReq).user_reff = decodedInfo;
+        const decodedInfo: CustomReq["user_reff"] = jwt.verify(token, JWT_SECRET);
+
+        if(typeof decodedInfo === 'object' && 'user_reff' in decodedInfo) (req as CustomReq).body.user_reff = decodedInfo.user_reff;
 
         next();
 

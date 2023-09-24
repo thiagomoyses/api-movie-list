@@ -22,6 +22,15 @@ export class MoviesService {
                     category,
                     status,
                     user_reff
+                },
+                select: {
+                    id: false,
+                    createdAt: true,
+                    updatedAt: false,
+                    user_reff: false,
+                    title: true,
+                    category: true,
+                    status: true
                 }
             });
 
