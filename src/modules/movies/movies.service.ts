@@ -19,7 +19,7 @@ export class MoviesService {
             const newMovie = await prisma.movie.create({
                 data: {
                     title,
-                    category,
+                    categoryId: category,
                     status,
                     user_reff
                 },
